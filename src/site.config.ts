@@ -11,11 +11,11 @@ import type { CardListData } from 'astro-pure/types';
 export const theme: ThemeUserConfig = {
   // === Basic configuration ===
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: 'CCM',
+  title: 'ZACK',
   /** Will be used in index page & copyright declaration */
-  author: 'ccm',
+  author: 'zack',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: '文字沉淀生命, 回忆勾连古今',
+  description: '万般无常，诸色皆我',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** Specify the default language for this site. */
@@ -59,9 +59,6 @@ export const theme: ThemeUserConfig = {
     menu: [
       { title: '文章', link: '/blog' },
       { title: '归档', link: '/archives' },
-      // { title: 'Projects', link: '/projects' },
-      { title: '🐱', link: '/cats' },
-      { title: '留言板', link: '/msgboard' },
       { title: '关于', link: '/about' }
     ]
   },
@@ -72,19 +69,10 @@ export const theme: ThemeUserConfig = {
     year: `© ${new Date().getFullYear()}`,
     // year: `© 2019 - ${new Date().getFullYear()}`,
     links: [
-      {
-        title: '京ICP备2025143479号-1',
-        link: 'https://beian.miit.gov.cn/',
-        style: 'text-sm'
-      }
-      // {
-      //   title: 'CC BY-NC-SA 4.0',
-      //   link: '/terms/list',
-      //   pos: 2
-      // }
+
     ],
     credits: true,
-    social: { github: 'https://github.com/catcodeme' }
+    social: { github: 'https://github.com/ztxing462' }
   },
 
   content: {
@@ -155,7 +143,7 @@ export const integ: IntegrationUserConfig = {
     server: 'https://waline.8cat.life',
     emoji: ['qq'],
     additionalConfigs: {
-      turnstileKey: '0x4AAAAAAB2iD4bdDPvuzxk1',
+      turnstileKey: 'rdIXFj7cYyIPu9bZqFWlN5y9',
       search: false, //表情包搜索
       lang: 'zh-CN',
       meta: ['nick', 'mail'],

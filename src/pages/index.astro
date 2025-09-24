@@ -7,22 +7,20 @@ import { Button, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/avatar_2.png'
+import avatar from '@/assets/avatar_1.png'
 import config from '@/site-config'
 
 const languages = [
-  { name: 'Java', icon: 'devicon:java' },
-  { name: 'Zig', icon: 'devicon:zig' },
+  { name: 'c++', icon: 'devicon:cplusplus' },
+
   { name: 'Python', icon: 'devicon:python' },
   { name: 'Shell', icon: 'devicon:bash' }
 ]
 
-const backend = [
-  { name: 'Spring', icon: 'devicon:spring' },
-  { name: 'Redis', icon: 'devicon:redis' },
-  { name: 'ClickHouse', icon: 'devicon:clickhouse' },
-  { name: 'Mysql', icon: 'devicon:mysql' },
-  { name: 'Apache Spark', icon: 'devicon:apachespark' }
+const framework = [
+
+  { name: 'pytorch', icon: 'devicon:pytorch' },
+  { name: 'django' },
 ]
 
 // const ide = [
@@ -36,6 +34,17 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#da9d0c'>
+  <script is:inline>
+    // 重置页面视图计数为0
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        const viewsElement = document.getElementById('vercount_value_site_pv');
+        if (viewsElement) {
+          viewsElement.textContent = '0';
+        }
+      }, 1000); // 等待Vercount脚本加载并更新计数后再覆盖
+    });
+  </script>
   <main class='flex w-full flex-col'>
     <!-- 第一屏 -->
     <section class='relative min-h-screen w-full'>
@@ -69,16 +78,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
                 <Image
                   src={avatar}
                   alt='profile'
-                  class='size-64 rounded-full border-2 border-border object-cover shadow-lg transition-all duration-300 lg:hover:grayscale'
+                  class='size-64 rounded-full border-2 border-border object-cover shadow-lg transition-all duration-300'
                   loading='eager'
                 />
-                <div class='avatar-message'>
-                  <p><span class='speaker'></span>2016 - 2024.10.29</p>
-                  <p><span class='speaker'>小花:</span>I miss you, CCM...</p>
-                  <p><span class='speaker'>CCM:</span>I miss you too, 小花.</p>
-                  <p><span class='speaker'></span>You will live forever on the internet,</p>
-                  <p><span class='speaker'></span>and forever in my heart...</p>
-                </div>
+
               </div>
             </div>
 
@@ -119,25 +122,16 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
                 <Label
                   title='GitHub'
                   as='a'
-                  href='https://github.com/catcodeme'
+                  href='https://github.com/ztxing462'
                   target='_blank'
                   class='transition-colors hover:text-primary'
                 >
                   <Icon name='github' class='size-6' slot='icon' />
                 </Label>
                 <Label
-                  title='twitter'
-                  as='a'
-                  href='https://twitter.com/hulj13'
-                  target='_blank'
-                  class='transition-colors hover:text-primary'
-                >
-                  <Icon name='x' class='size-6' slot='icon' />
-                </Label>
-                <Label
                   title='Bilibili'
                   as='a'
-                  href='https://space.bilibili.com/19080963'
+                  href='https://space.bilibili.com/675056811?spm_id_from=333.1007.0.0'
                   target='_blank'
                   class='transition-colors hover:text-primary'
                 >
@@ -188,25 +182,11 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <!-- 技能部分 -->
         <Section title='Skills' class='mt-20'>
           <SkillLayout title='Languages' skills={languages} />
-          <SkillLayout title='Backend' skills={backend} />
+          <SkillLayout title='Framework' skills={framework} />
           <!-- <SkillLayout title='IDE' skills={ide} /> -->
         </Section>
 
-        <!-- GitHub 活动图 -->
-        <Section title='GH-Activities' class='mt-20'>
-          <img
-            class='hidden w-full dark:block'
-            src='https://raw.githubusercontent.com/CatCodeMe/catcodeme/output/github-contribution-grid-snake-dark.svg'
-            alt='github contribution snake dark'
-            loading='lazy'
-          />
-          <img
-            class='block w-full dark:hidden'
-            src='https://raw.githubusercontent.com/CatCodeMe/catcodeme/output/github-contribution-grid-snake.svg'
-            alt='github contribution snake light'
-            loading='lazy'
-          />
-        </Section>
+
 
         <!-- 格言 - 页面底部 -->
         <div class='mt-5 flex justify-center'>
@@ -220,7 +200,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
               <span class='size-1.5 sm:size-2 rounded-full bg-green-400'></span>
             </span>
             <p class='font-medium text-muted-foreground whitespace-nowrap'>
-              五帝三皇神圣事，骗了无涯过客
+              我们都是孤独的星星
             </p>
           </div>
         </div>
@@ -443,51 +423,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     animation: arrow-pulse 2s ease-in-out infinite;
   }
 
-  @keyframes arrow-pulse {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
 
-  /* 新的头像消息样式 */
-  .avatar-wrapper {
-    position: relative;
-    cursor: none; /* 隐藏默认光标 */
-  }
 
-  .avatar-message {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%) translateY(calc(100% + 1rem));
-    width: max-content;
-    color: hsl(var(--muted-foreground) / 0.6);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    z-index: 1;
-  }
 
-  .avatar-message p {
-    margin: 0.2em 0;
-    display: flex;
-    gap: 0.5em;
-    align-items: baseline;
-  }
-
-  .avatar-message .speaker {
-    min-width: 3em;
-    text-align: right;
-  }
-  .avatar-wrapper:hover .avatar-message {
-    opacity: 1;
-  }
 
   /* 在小屏幕上禁用头像 hover 效果 */
   @media (max-width: 1023px) {
