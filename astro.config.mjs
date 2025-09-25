@@ -26,7 +26,7 @@ import config from './src/site.config.ts';
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: 'https://8cat.life',
+  site: 'https://zengtx.cloud',
   // base: '/docs',
   trailingSlash: 'never',
   build: {

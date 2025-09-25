@@ -103,7 +103,7 @@ export const integ: IntegrationUserConfig = {
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
-      { name: 'Link', val: 'https://8cat.life/' },
+      { name: 'Link', val: 'https://zengtx.cloud' },
       { name: 'Avatar', val: 'https://avatars.githubusercontent.com/u/11496772?v=4&size=64' }
     ]
   },
