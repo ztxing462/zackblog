@@ -3,7 +3,7 @@
   "type": "module",
   "version": "4.0.8",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 0.0.0.0",
     "dev:check": "astro check --watch & astro dev",
     "build": "bunx astro-pure check && bunx astro check && bunx astro build",
     "preview": "astro preview",
