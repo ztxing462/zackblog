@@ -7,10 +7,10 @@ import { cats } from '@/assets/cats/config/data'
 
 const imgs = cats
   .map((cat) => ({
-    srcFull: cat.image,
-    srcSmall: typeof cat.image === 'object' ? cat.image.src : ''
+    srcFull: typeof cat.image === 'object' ? cat.image.src : cat.image,
+    srcSmall: typeof cat.image === 'object' ? cat.image.src : cat.image
   }))
-  .filter((img) => img.srcFull && img.srcSmall)
+  .filter((img) => img.srcFull)
 ---
 
 <GalleryLayout title='Cat Gallery'>
