@@ -19,7 +19,7 @@ slug: cloud-server-synchronization-scheme
 
 那这几天体验下来，使用vscode等远程连接还是不太稳定，如果一直使用ssh体验感也不够现代，所以现在推荐的一套方案是在各本地设备进行编写，编写完后传入git服务器，传入后，使用github action进行同步。
 
-![CWorld](./src/content/blog/coding/attachments/image.png)
+![CWorld](./attachments/image.png)
 
 但这个方案可能存在的缺陷如果报错重启，感觉有点麻烦，不过后面只修改文章内容的话，应该没啥大问题。同时，github网速过慢，同步可能出错。
 在后面，能否自搭git服务器，主要考虑的是要不要搭建带图形化界面的，类似 gitea这样的，可以触发action这种，但对于资源要求感觉有点高。如果直接搭git，将git内容传入blog，感觉也可以，这样可以直接跳过github，主要是不想将有些内容放到国内的一些平台上，自己看看就可以了。

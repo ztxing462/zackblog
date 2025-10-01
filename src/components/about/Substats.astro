@@ -1,10 +1,12 @@
 ---
-import { socialLinks, type iconsType } from 'astro-pure/types'
+import { type iconsType } from 'astro-pure/types'
 import { Icon } from 'astro-pure/user'
+
+type SocialPlatform = 'github' | 'gitlab' | 'discord' | 'youtube' | 'instagram' | 'x' | 'telegram' | 'rss' | 'email' | 'reddit' | 'bluesky' | 'tiktok' | 'weibo' | 'steam' | 'bilibili' | 'zhihu' | 'coolapk' | 'netease' | 'xiaohongshu'
 
 interface SubstatsItem {
   platform: string
-  icon: (typeof socialLinks)[number]
+  icon: SocialPlatform
   color?: string
   link?: string
   text: string
