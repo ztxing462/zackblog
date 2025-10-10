@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happybirthday</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+        #loadingText {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            z-index: 1000;
+        }
+        /* BGM控制按钮样式 */
+        #bgmControl {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        #bgmControl:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        #bgmControl.muted {
+            background-color: rgba(255, 0, 0, 0.2);
+        }
+        
+        /* 彩蛋悬浮框样式 */
+        .easter-egg-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .easter-egg-hint:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .easter-egg-hint img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0.9);
+        }
+        
+        .hint-text {
+            position: absolute;
+            bottom: 50%;
+            left: -160px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hint-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .easter-egg-hint:hover .hint-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body data-theme="night">
+    <!-- 加载文本 -->
+    <div class="upload-loading" id="loadingText">正在解析图片...</div>
+
+    <!-- 画布容器 -->
+    <canvas id="canvas"></canvas>
+    
+    <!-- 音频元素 -->
+    <audio id="bgm" loop preload="metadata" crossorigin="anonymous">
+        <source src="bgm/lovely.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <!-- 彩蛋悬浮框 -->
+    <div id="easterEggHint" class="easter-egg-hint">
+        <img src="favicon/caidan.svg" width="24" height="24" alt="彩蛋提示">
+        <div class="hint-text">在键盘上按下lc即可触发彩蛋</div>
+    </div>
+    
+    <!-- BGM控制按钮 -->
+    <div id="bgmControl" title="点击切换音乐">🎵</div>
+    
+    <!-- 烟花效果容器 -->
+    <div id="fireworksContainer" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        display: none;
+    "></div>
+    
+    <!-- 倒计时提示元素 -->
+    <div id="countdown提示" style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1001;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    ">
+        <div id="countdownText">在5秒后向屏幕吹气</div>
+        <div id="countdownNumber" style="font-size: 72px; margin: 20px 0;">5</div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
